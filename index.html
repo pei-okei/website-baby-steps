@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Beta]peisite</title>
+    <title>[beta]peisite</title>
     <style>
         h1 {
             color:#8ACE00;
@@ -48,10 +48,11 @@
     <!-- hee hee har har -->
     <p> 
         I don't really know HTML or JavaScript (yet) but I made a 
-        <span style="font-family: sans-serif; color: #AB47EE; font-size: 36px; font-weight: bold;">
-            hexcode guessing game,
-        </span>
-        <mark style="background-color:#D0FE00"><i>scroll to the bottom.</i></mark>
+        <a href="hex-guess.html">
+            <span style="font-family: sans-serif; color: #AB47EE; font-size: 36px; font-weight: bold;">
+                hexcode guessing game [click]
+            </span>
+        </a>
     </p>
     
     <img src="nyc-subway.png" alt="image of NYC subway station by me" style="width: 1024px">
@@ -61,70 +62,6 @@
     <a href="en.wikipedia.org"> i <3 wikipedia </a>
     
     <hr>
-
-
-
-
-    <!-- Developping my hex guess game below-->
-    <h2> hex guess </h2>
-
-
-    <p> Type in a hexcode below to see the color. It won't work for invalid hex codes. </p>
-    <input type="text" id="hexcode-text" value="#">
-    <button onclick="displayColor()">guess</button>
-
-
-    <br>
-
-
-    <div id="hexcode-target-box" class="center-box">
-        <!-- <p id="hexcode-demo" style="font-size:36px; font-family:Helvetica; font-weight:800;"> 
-            &#10081 here's your color! &#10047 &#10086
-        </p>
-        <div id="hexcode-demo-shape" class="star"></div> -->
-        <p id="hexcode-guess-display" style="font-size:64px; font-family:Helvetica; font-weight: 800;">
-            your guess will appear here
-        </p>
-    </div>
-
-    <button onclick="revealAnswer()">reveal answer</button>
-    <p id="answer-hexcode"></p>
-
-
-    <script>
-        const hexadecimal_digits = ["0", "1", "2", "3", "4", "5", "6","7", "8", "9", "A", "B", "C", "D", "E", "F"];
-        
-        function randomHexDigit() {
-            let random_index = Math.floor(Math.random() * 16);
-            return hexadecimal_digits[random_index]
-        } 
-
-        function randomHexcode() {
-            var hexcode = "#"
-            for (let i = 0; i < 6; i++) {
-                hexcode += randomHexDigit()
-            }
-
-            return hexcode 
-        }
-        
-        let hexcode = randomHexcode();
-        document.getElementById("hexcode-target-box").style.background = hexcode;
-
-
-        function revealAnswer() {
-            document.getElementById("answer-hexcode").innerHTML = hexcode;
-        }
-
-
-        function displayColor() {
-            var x = document.getElementById("hexcode-text").value;
-            // document.getElementById("hexcode-demo").style.color = x;
-            // document.getElementById("hexcode-demo-shape").style.background = x;
-            document.getElementById("hexcode-guess-display").style.color = x;
-            document.getElementById("hexcode-guess-display").innerHTML = x;
-        }
-    </script>
 
 </body>
 </html>

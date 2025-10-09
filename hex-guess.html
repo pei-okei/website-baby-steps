@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[beta]pei's hex guess</title>
+    <style>
+        h1 {
+            color:#8ACE00;
+            font-family: Helvetica;
+            font-size: 48px; 
+            font-weight: bold;
+        }
+        h2 {
+            color:#3454FF;
+            font-family: Helvetica;
+            font-size: 36px; 
+            font-weight: bold;
+        }
+        .star {
+            width: 300px;  
+            aspect-ratio: 1;
+            background: black;
+            clip-path: polygon(50% 0,
+                calc(50%*(1 + sin(.4turn))) calc(50%*(1 - cos(.4turn))),
+                calc(50%*(1 - sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+                calc(50%*(1 + sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+                calc(50%*(1 - sin(.4turn))) calc(50%*(1 - cos(.4turn))) 
+            ); 
+        }
+
+        .center-box {
+            display: grid;
+            place-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Developping my hex guess game below-->
+    <h2> hex guess </h2>
+
+
+    <p> Type in a hexcode below to see the color. It won't work for invalid hex codes (yet). </p>
+    <input type="text" id="hexcode-text-input" value="#">
+    <button onclick="makeGuess()">guess</button>
+
+    <p id="distance-to-hexcode"> Distance = &infin; </p>
+
+
+    <div id="hexcode-target-box" class="center-box" style="margin:20px;">
+        <p id="hexcode-guess-display" style="font-size:64px; font-family:Helvetica; font-weight: 800;">
+            your guess will appear here
+        </p>
+    </div>
+
+
+    <button onclick="revealHideAnswer()">reveal/hide answer</button>
+    <p id="answer-hexcode"> <br> </p>
+
+    <button onclick="newRandomHex()">play again</button>
+
+
+    <script>
+        const hexadecimal_digits = ["0", "1", "2", "3", "4", "5", "6","7", "8", "9", "A", "B", "C", "D", "E", "F"];
+        
+        function randomHexDigit() {
+            let random_index = Math.floor(Math.random() * 16);
+            return hexadecimal_digits[random_index];
+        } 
+
+        function randomHexcode() {
+            let hexcode = "#";
+            for (let i = 0; i < 6; i++) {
+                hexcode += randomHexDigit();
+            }
+
+            document.getElementById("hexcode-target-box").style.background = hexcode;
+
+            return hexcode;
+        }
+        
+        let target_hexcode = randomHexcode();
+
+        let show_answer = true;
+
+        function revealHideAnswer() {
+            if (show_answer) {
+                document.getElementById("answer-hexcode").innerHTML = target_hexcode;
+            } else {
+                document.getElementById("answer-hexcode").innerHTML = "<br>";
+            }
+            show_answer = !(show_answer);
+        }
+
+        function makeGuess() {
+            let guess = document.getElementById("hexcode-text-input").value;
+
+            if (guess[0] == "#" && guess.length == 7) { // TODO: make sure all digits are hexadecimal
+                displayGuessColor(guess);
+                hexcodeDistance(guess, target_hexcode);
+            } else {
+                document.getElementById("distance-to-hexcode").innerHTML = "Not a valid hexcode";
+            }
+        }
+
+        function displayGuessColor(hex) {
+            document.getElementById("hexcode-guess-display").style.color = hex;
+            document.getElementById("hexcode-guess-display").innerHTML = hex;
+        }
+
+        function hexcodeDistance(guess, target){
+            let guess_str = guess.replace("#","");
+            let target_str = target.replace("#","");
+            let guess_RGB = ['0x'+guess_str[0]+guess_str[1], '0x'+guess_str[2]+guess_str[3], '0x'+guess_str[4]+guess_str[5]];
+            let target_RGB = ['0x'+target_str[0]+target_str[1], '0x'+target_str[2]+target_str[3], '0x'+target_str[4]+target_str[5]];
+
+            let hexcode_dist = 0.0;
+            let color_diff = 0.0;
+
+            for (let i = 0; i < 3; i++) {
+                color_diff = (parseInt(guess_RGB[i]) - parseInt(target_RGB[i])).toFixed(2);
+                hexcode_dist += color_diff * color_diff;
+            }
+
+            hexcode_dist = Math.sqrt(hexcode_dist).toFixed(2);
+            
+            document.getElementById("distance-to-hexcode").innerHTML = 'Distance = ' + hexcode_dist;
+        }
+
+        function newRandomHex() {
+            document.getElementById("answer-hexcode").innerHTML = "<br>";
+            document.getElementById("distance-to-hexcode").innerHTML = "Distance = &infin;";
+            show_answer = true;
+            target_hexcode = randomHexcode();
+        }
+    </script>
+</body>
+</html>
