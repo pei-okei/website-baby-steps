@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[beta]pei's hex guess</title>
+    <title>[beta]peisite</title>
     <style>
         h1 {
             color:#8ACE00;
@@ -17,6 +17,46 @@
             font-size: 36px; 
             font-weight: bold;
         }
+
+        a:link {
+        color: #e444c3;
+        }
+        a:visited {
+        color: #3416aa;
+        }
+        a:hover {
+        color: #f389fe;
+        }
+        a:active {
+        color: #0000ff;
+        }
+
+        a.nav:link, a.nav:visited{
+            color:#e444c3;
+            text-decoration:none;
+        }
+        a.nav:hover{
+            color:#ffd3ff;
+            background-color: #e444c3;
+            text-decoration:none;
+        }
+        a.nav:active{
+            color:#ffd3ff;
+            background-color: #3456ff;
+            text-decoration:none;
+        }
+
+        button {
+            background-color:#379f20;
+            color:#f3ebff;
+            font-family:serif;
+            font-weight: bold;
+            border: none;
+            border-radius:5px;
+            padding:5px 8px;
+        }
+
+        /* shapes */
         .star {
             width: 300px;  
             aspect-ratio: 1;
@@ -36,11 +76,25 @@
     </style>
 </head>
 <body>
+    <!--main menu-->
+    <div id="mainmenu" 
+    style="margin:auto;width: 95%; text-align: center; padding:10px;
+    border:4px dotted #e444c3; background-color: #cccfef; color:#e444c3;">  
+        <span style="font-size:24px;color:#3456ff;font-family:Helvetica">menu</span>
+        <br>
+        <a href="index.html" class="nav">home</a>
+            &nbsp; &#9733 &nbsp;
+        <a href="hex-guess.html" class="nav">hex guess</a>
+    </div>
+
+
+
+
     <!-- Developping my hex guess game below-->
     <h2> hex guess </h2>
 
 
-    <p> Type in a hexcode below to see the color. It won't work for invalid hex codes (yet). </p>
+    <p> Guess the hexcode of the color of the box. Your guess will appear below. </p>
     <input type="text" id="hexcode-text-input" value="#">
     <button onclick="makeGuess()">guess</button>
 
@@ -55,9 +109,8 @@
 
 
     <button onclick="revealHideAnswer()">reveal/hide answer</button>
-    <p id="answer-hexcode"> <br> </p>
-
     <button onclick="newRandomHex()">play again</button>
+    <p id="answer-hexcode"> <br> </p>
 
 
     <script>
@@ -74,7 +127,19 @@
                 hexcode += randomHexDigit();
             }
 
+            let shade_val = hexcode.replace("#","");
+            shade_val = parseInt("0x" + shade_val[0] + shade_val[1]) + parseInt("0x" + shade_val[2] + shade_val[3]) + parseInt("0x" + shade_val[4] + shade_val[5]);
+
+            let init_text_color = "" 
+            if (shade_val >= 382) {
+                init_text_color = "#000000";
+            } else {
+                init_text_color = "#FFFFFF";
+            }
+
+            document.getElementById("hexcode-guess-display").style.color = init_text_color;
             document.getElementById("hexcode-target-box").style.background = hexcode;
+            // document.body.style.backgroundColor = hexcode;
 
             return hexcode;
         }
@@ -95,11 +160,11 @@
         function makeGuess() {
             let guess = document.getElementById("hexcode-text-input").value;
 
-            if (guess[0] == "#" && guess.length == 7) { // TODO: make sure all digits are hexadecimal
+            if (/^#[0-9A-F]{6}[0-9a-f]{0,2}$/i.test(guess) && guess.length == 7) {
                 displayGuessColor(guess);
                 hexcodeDistance(guess, target_hexcode);
             } else {
-                document.getElementById("distance-to-hexcode").innerHTML = "Not a valid hexcode";
+                document.getElementById("distance-to-hexcode").innerHTML = "Not a valid hexcode.";
             }
         }
 
@@ -130,6 +195,7 @@
         function newRandomHex() {
             document.getElementById("answer-hexcode").innerHTML = "<br>";
             document.getElementById("distance-to-hexcode").innerHTML = "Distance = &infin;";
+            document.getElementById("hexcode-guess-display").innerHTML = "your guess will appear here";
             show_answer = true;
             target_hexcode = randomHexcode();
         }
