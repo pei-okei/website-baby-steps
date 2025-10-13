@@ -141,7 +141,7 @@
     <div id="mainmenu" 
     style="margin:auto;width: 95%; text-align: center; padding:10px;
     border:4px dotted #e444c3; background-color: #cccfef; color:#e444c3;">  
-        <p style="display:inline-block;font-size:24px;color:#3456ff;font-family:Helvetica">
+        <p style="display:inline-block;font-size:24px;color:#56b40a;font-family:Helvetica;font-weight:bold;">
             <img src="img/rotating-smiley.gif" style="height:20px;">
             menu
             <img src="img/spinning-CD.gif" style="height:20px;">
@@ -256,8 +256,19 @@
             }
 
             hexcode_dist = Math.sqrt(hexcode_dist).toFixed(2);
+
+            let msg = "";
+            if (hexcode_dist <= 10.0) {
+                msg = " [hardly discernible!]";
+            } else if (hexcode_dist <= 25.0) {
+                msg = " [so close!]";
+            } else if (hexcode_dist <= 50.0) {
+                msg = " [close...]";
+            } else {
+                msg = " [not quite... keep trying!]";
+            }
             
-            document.getElementById("distance-to-hexcode").innerHTML = 'Distance = ' + hexcode_dist;
+            document.getElementById("distance-to-hexcode").innerHTML = 'Distance = ' + hexcode_dist + msg;
         }
 
         function newRandomHex() {
