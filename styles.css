@@ -1,0 +1,238 @@
+/* DEFAULT SETTINGS */ 
+* {
+    scroll-behavior: smooth;
+}
+
+
+
+/* FONTS */ 
+@font-face {
+    font-family:"Avara";
+    src:url("fonts/Avara-Bold.otf");
+}
+@font-face {
+    font-family: "Lava-Lamp";
+    src:url("fonts/BasteleurLavaLampVF.ttf");
+}
+
+
+
+/* PARAGRAPH STYLES */ 
+h1 {
+    color:#8ACE00;
+    font-family: Avara;
+    font-size: 48px; 
+    font-weight: bold;
+}
+h2 {
+    color:#3454FF;
+    font-family: Avara;
+    font-size: 36px; 
+    font-weight: bold;
+}
+
+.test-paragraph {
+    max-width:450px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: right;
+}
+
+/* VARIABLE FONT STUFF */ 
+.variable-font-loop {
+    color:#eaebff;
+
+    border-radius: 12px;
+    padding:5px;
+    margin:10px;
+    text-align: center;
+
+    font-family:"Lava-Lamp";
+    font-size:50px;
+    font-variation-settings:"LALA" 0;
+
+    animation-name: variable-font-loop-animation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+
+    background: linear-gradient(60deg,rgb(223, 104, 171) 0%, rgb(143, 75, 203) 50%, rgb(80, 77, 225) 100%);
+    background-size: 175% 175%;
+}
+
+@keyframes variable-font-loop-animation{
+    0% {
+        font-variation-settings: "LALA" 0;
+        background-position:0% 50%;
+    }
+    50% {
+        font-variation-settings: "LALA" 100;
+        background-position:100% 50%;
+    }
+    100% {
+        font-variation-settings: "LALA" 0;
+        background-position:0% 50%;
+    }
+}
+
+.variable-font-hover {
+    background-color:#b0b3f0;
+    color:rgb(7, 73, 17);
+
+    border-radius: 12px;
+    padding:5px;
+    margin:10px;
+    text-align: center;
+
+    font-family:"Lava-Lamp";
+    font-size:50px;
+    font-variation-settings:"LALA" 0;
+    
+    transition:0.5s;
+}
+
+.variable-font-hover:hover{
+    font-variation-settings:"LALA" 100;
+    color:#ff3eef;
+    background-color:#d5d7ff;
+    font-size: 60px;
+}
+
+
+
+/* LINKS */ 
+a:link {
+    color: #e444c3;
+}
+a:visited {
+    color: #3416aa;
+}
+a:hover {
+    color: #f389fe;
+}
+a:active {
+    color: #0000ff;
+}
+
+a.nav:link, a.nav:visited{
+    color:#3456ff;
+    text-decoration:none;
+}
+
+a.nav:hover{
+    background-color: #ffd3ff;
+}
+
+a.nav:active{
+    background-color: #a2fa1d;
+}
+
+
+
+/* BUTTONS */ 
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+button {
+    transition:0.5s;
+    background-color:#ffd3ff;
+    border: 3px solid #2d8819;
+    color:#2d8819;
+    font-family:futura;
+    font-weight: 800;
+    border-radius:30px;
+    padding:12px 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    animation:wiggle 0.5s ease-in-out infinite;
+    background-color:#dfa3ff;
+    letter-spacing:0.2em;
+    /* filter:blur(5px); */
+}
+
+button:active {
+    /* background: linear-gradient(45deg, #dfa3ff, #ffffff); */
+    animation:none;
+    background-color: #ffe8ff;
+    border-color:#ff63f2;
+    color:#ff63f2;
+}
+
+input {
+    width: 100px;
+    height: 18px;
+    border-width: 3px;
+    border-style:solid;
+    border-color: grey;
+    border-radius: 30px;
+    padding: 12px 18px;
+    letter-spacing: 0.8px;
+    font-family:'Courier New',monospace;
+    font-weight:800;
+    color: grey;
+}
+
+input:focus{
+    animation-duration: 3s;
+    color: #3456ff;
+    border-color:#3456ff;
+    caret-color:#3456ff;
+    caret-shape:block;
+}
+
+.button-classic {
+    background: #ffd3ff;
+    transition:0.5s;
+    font-family: inherit;
+    padding: 12px 18px;
+    font-weight: 900;
+    font-size: 18px;
+    border: 3px solid #2d8819;
+    border-radius: 1.0em;
+    box-shadow: 0.1em 0.1em;
+    cursor: pointer;
+    color: #2d8819;
+    display:inline-block;
+}
+
+.button-classic:hover {
+    transform: translate(-0.15em, -0.15em);
+    border: 3px solid #2d8819;
+    box-shadow: 0.25em 0.25em;
+    color: #2d8819;
+}
+
+.button-classic:active {
+    transform: translate(0.05em, 0.05em);
+    border: 3px solid #2d8819;
+    box-shadow: 0.05em 0.05em;
+    color: #2d8819;
+}
+
+
+
+/* SHAPES */
+.star {
+    width: 300px;  
+    aspect-ratio: 1;
+    background: black;
+    clip-path: polygon(50% 0,
+        calc(50%*(1 + sin(.4turn))) calc(50%*(1 - cos(.4turn))),
+        calc(50%*(1 - sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+        calc(50%*(1 + sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+        calc(50%*(1 - sin(.4turn))) calc(50%*(1 - cos(.4turn))) 
+    ); 
+}
+
+.center-box {
+    display: grid;
+    place-items: center;
+}

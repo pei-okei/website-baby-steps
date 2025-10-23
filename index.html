@@ -3,136 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>[beta]peisite</title>
-    <style>
-        h1 {
-            color:#8ACE00;
-            font-family: Helvetica;
-            font-size: 48px; 
-            font-weight: bold;
-        }
-        h2 {
-            color:#3454FF;
-            font-family: Helvetica;
-            font-size: 36px; 
-            font-weight: bold;
-        }
 
-        a:link {
-        color: #e444c3;
-        }
-        a:visited {
-        color: #3416aa;
-        }
-        a:hover {
-        color: #f389fe;
-        }
-        a:active {
-        color: #0000ff;
-        }
-
-        a.nav:link, a.nav:visited{
-            color:#3456ff;
-            text-decoration:none;
-        }
-
-        a.nav:hover{
-            background-color: #ffd3ff;
-        }
-
-        a.nav:active{
-            background-color: #a2fa1d;
-        }
-
-        button {
-            background-color:#ffd3ff;
-            border: 2px solid #2d8819;
-            color:#2d8819;
-            font-family:serif;
-            font-weight: bold;
-            border-radius:30px;
-            padding:12px 18px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color:#3456ff;
-            border: 2px solid #bbff00;
-            color:#bbff00;
-            font-family:serif;
-            font-weight: bold;
-            border-radius:30px;
-            padding:12px 18px;
-        }
-
-        button:active {
-            background: linear-gradient(45deg, #7bff00, #3456ff);
-            border: 2px solid #7bff00;
-            color:#7bff00;
-            font-family:serif;
-            font-weight: bold;
-            border-radius:30s;
-            padding:12px 18px;
-        }
+    <meta name="author" content="Pei-Jun H.">
+    <meta name="keywords" content="hex code guessing, Pei-Jun">
+    <meta name="description" content="Pei-Jun's website experimentation!">
 
 
-        input {
-            width: 100px;
-            height: 40px;
-            border: 2px solid #3456ff;
-            border-radius: 30px;
-            padding-left: 15px;
-            letter-spacing: 0.8px;
-            font-family:monospace;
-            color: #3456ff;
-        }
+    <link rel="stylesheet" href="styles.css">
 
-
-        /* shapes */
-        .star {
-            width: 300px;  
-            aspect-ratio: 1;
-            background: black;
-            clip-path: polygon(50% 0,
-                calc(50%*(1 + sin(.4turn))) calc(50%*(1 - cos(.4turn))),
-                calc(50%*(1 - sin(.2turn))) calc(50%*(1 - cos(.2turn))),
-                calc(50%*(1 + sin(.2turn))) calc(50%*(1 - cos(.2turn))),
-                calc(50%*(1 - sin(.4turn))) calc(50%*(1 - cos(.4turn))) 
-            ); 
-        }
-
-        .center-box {
-            display: grid;
-            place-items: center;
-        }
-
-        button.button-classic {
-        background: #ffd3ff;
-        font-family: inherit;
-        padding: 0.6em 1.3em;
-        font-weight: 900;
-        font-size: 18px;
-        border: 3px solid #2d8819;
-        border-radius: 1.0em;
-        box-shadow: 0.1em 0.1em;
-        cursor: pointer;
-        color: #2d8819;
-        }
-
-        button.button-classic:hover {
-        transform: translate(-0.15em, -0.15em);
-        border: 3px solid #2d8819;
-        box-shadow: 0.25em 0.25em;
-        color: #2d8819;
-        }
-
-        button.button-classic:active {
-        transform: translate(0.05em, 0.05em);
-        border: 3px solid #2d8819;
-        box-shadow: 0.05em 0.05em;
-        color: #2d8819;
-        }
-    </style>
+    <link rel="icon" type="gif" href="img/spinning-CD.gif">
 </head>
 <body style="background-color:#cbe4ff;color:#3454FF">
     
